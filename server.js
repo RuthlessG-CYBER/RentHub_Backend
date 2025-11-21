@@ -13,11 +13,18 @@ const MONGODB_URL = process.env.MONGODB_URL;
 
 app.use(
   cors({
-    origin: "https://rent-hub-two.vercel.app/",
+    origin: [
+      "http://localhost:5173",
+      "https://rent-hub-two.vercel.app"
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   })
 );
-app.use(bodyParser.json());
+
+// app.use(bodyParser.json());
+app.use(express.json());
+
 
 app.get("/", (req, res) => {
   res.send("Welcome to Panda's Server!");
